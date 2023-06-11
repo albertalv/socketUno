@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sala</title>
+</head>
+<body>
+    <h1>Sala</h1>
+    {% if connected %}
+        <p>Conectado</p>
+    {% else %}
+        <p>Desconectado</p>
+    {% endif %}
+    <button onclick="cambiarEstado()">Cambiar Estado</button>
+
+    <script>
+        function cambiarEstado() {
+            fetch('/cambiar_estado/')
+                .then(response => response.text())
+                .then(html => {
+                    document.documentElement.innerHTML = html;
+                });
+        }
+    </script>
+</body>
+</html>

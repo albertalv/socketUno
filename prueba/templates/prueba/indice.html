@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Índice</title>
+</head>
+<body>
+    <h1>Índice</h1>
+    <p id="status"></p>
+
+    <script>
+        function getStatus() {
+            fetch('/obtener_estado/')
+                .then(response => response.json())
+                .then(data => {
+                    const status = data.connected ? 'Conectado' : 'Desconectado';
+                    document.getElementById('status').textContent = status;
+                });
+        }
+
+        // Obtener el estado inicial al cargar la página
+        getStatus();
+
+        // Actualizar el estado cada 3 segundos
+        setInterval(getStatus, 3000);
+    </script>
+</body>
+</html>
